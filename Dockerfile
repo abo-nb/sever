@@ -1,6 +1,9 @@
 FROM debian
 RUN apt update
-RUN apt install default-jdk
+RUN add-apt-repository ppa:openjdk-r/ppa  # only Ubuntu 17.4 and earlier
+RUN sudo apt install openjdk-8-jdk
+RUN sudo apt install openjdk-8-source #this is optional, the jdk source code
+RUN export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 RUN DEBIAN_FRONTEND=noninteractive apt install ssh wget npm apache2 php php-curl php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring  php-xml php-pear php-bcmath  -y
 RUN  npm install -g wstunnel
 RUN mkdir /run/sshd 
